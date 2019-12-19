@@ -4,12 +4,14 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="com.entity.Files" table="Files">
-		<id name="user_id" column="user_id">
+		<id name="fileId" column="fileId">
 			<generator class="native"></generator>		
 		</id>
-		<property name="realname" column="realname" length="20"></property>
-		<property name="username" column="username" length="20"></property>
-		<property name="password" column="password" length="20"></property>
-		<property name="role" column="role" length="20"></property>
+		<property name="fileName" column="fileName" length="20"></property>
+		<property name="fileFormat" column="fileFormat" length="20"></property>
+		<property name="fileAddress" column="fileAddress" length="20"></property>
+		<property name="type" column="type" length="20"></property>
+		<property name="uploadTime" column="uploadTime" ></property>
+		<property name="uploaderName" column="uploaderName" length="20"></property>
 	</class>
 </hibernate-mapping>

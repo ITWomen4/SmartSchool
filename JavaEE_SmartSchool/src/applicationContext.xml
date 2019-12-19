@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -15,10 +15,12 @@
 
 
 	<!-- 引入外部属性文件 -->
-	<context:property-placeholder location="classpath:jdbc.properties" />
+	<context:property-placeholder
+		location="classpath:jdbc.properties" />
 
 	<!-- 配置连接池 -->
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+	<bean id="dataSource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="${jdbc.driverClass}"></property>
 		<property name="jdbcUrl" value="${jdbc.url}"></property>
 		<property name="user" value="${jdbc.username}"></property>
@@ -42,12 +44,15 @@
 		<property name="mappingResources">
 			<list>
 				<value>com/entity/Users.hbm.xml</value>
+				<value>com/entity/Files.hbm.xml</value>
+				<value>com/entity/LgNotice.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
 
 	<!-- 配置action，action交由spring管理 -->
-	<bean id="usersAction" class="com.action.UsersAction" scope="prototype">
+	<bean id="usersAction" class="com.action.UsersAction"
+		scope="prototype">
 		<property name="usersService" ref="usersService"></property>
 	</bean>
 
@@ -55,12 +60,12 @@
 	<bean id="usersService" class="com.service.impl.UsersServiceImpl">
 		<property name="usersDao" ref="usersDao"></property>
 	</bean>
-	
+
 	<!-- 配置dao -->
 	<bean id="usersDao" class="com.dao.impl.UsersDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
- 
+
 	<!-- 配置事务管理器 -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
@@ -68,6 +73,7 @@
 	</bean>
 
 	<!-- 开启注解事务 -->
-	<tx:annotation-driven transaction-manager="transactionManager" />
-	
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
+
 </beans>
