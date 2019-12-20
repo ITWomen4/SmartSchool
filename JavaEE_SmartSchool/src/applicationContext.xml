@@ -57,13 +57,24 @@
 		<property name="usersService" ref="usersService"></property>
 	</bean>
 
+	<bean id="lgNoticeAction" class="com.action.LgNoticeAction"
+		scope="prototype">
+		<property name="lgNoticeService" ref="lgNoticeService"></property>
+	</bean>
+	
 	<!-- 配置业务层service -->
 	<bean id="usersService" class="com.service.impl.UsersServiceImpl">
 		<property name="usersDao" ref="usersDao"></property>
 	</bean>
+	<bean id="lgNoticeService" class="com.service.impl.LgNoticeServiceImpl">
+		<property name="lgNoticeDao" ref="lgNoticeDao"></property>
+	</bean>
 
 	<!-- 配置dao -->
 	<bean id="usersDao" class="com.dao.impl.UsersDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="lgNoticeDao" class="com.dao.impl.LgNoticeDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 

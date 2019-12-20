@@ -26,6 +26,10 @@
 	<h3 style="color:red;" align="center"><s:actionerror/></h3>
 	<input type="submit" value="登录" style="cursor: pointer;" />
 </s:form>
+	 <s:form action="lgNotice_findAll" method="get" namespace="/"> 
+	     <input type="submit" value="测试查询所有后勤通知"  class="btn btn-primary btn-block btn-large" />
+	 </s:form>
+	
 	 <s:form action="user_register" method="get"> <input type="submit" value="注册" class="btn btn-primary btn-block btn-large"></s:form>
 </div>
 </div>

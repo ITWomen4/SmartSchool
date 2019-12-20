@@ -7,8 +7,10 @@
 		<action name="user_*" class="usersAction" method="{1}" >
 			<result name="INPUT">/login.jsp</result>
 			<result name="SUCCESS" type="redirect" >/mainpage.jsp</result>
-			<result name="SUCCESS" type="redirect" >/mainpage.jsp</result>
 			<result name="register">/register.jsp</result>
+		</action>
+		<action name="lgNotice_*" class="lgNoticeAction" method="{1}" >
+			<result name="findAll">/jsp/lgNotice/listLgNotice.jsp</result>
 		</action>
 	</package>
 </struts>    
