@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+
+.part1 {
+	text-decoration: none;
+	color: black;
+}
+
+.part3_5 {
+	text-decoration: none;
+	color: black;
+	bo
+}
+
+.part3_6 {
+	text-decoration: none;
+	color: black;
+}
+.lgTable{
+	width:40%;
+	/**
+	margin：0 auto;
+	**/
+	bgcolor:"#ffffff";
+	margin-left:30%;
+	margin-top:10%;
+}

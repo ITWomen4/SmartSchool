@@ -2,6 +2,8 @@ package com.entity;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 public class Files {
 	private int fileId;
 	private String fileName;
@@ -10,15 +12,35 @@ public class Files {
 	private int type;
 	private Date uploadTime;
 	private String uploaderName;
+	private int status;//文件的状态 0代表删除 ，1代表正常
+	private CommonsMultipartFile  file;
 	public Files() {
 		super();
 	}
+	
 	@Override
 	public String toString() {
 		return "Files [fileId=" + fileId + ", fileName=" + fileName + ", fileFormat=" + fileFormat + ", fileAddress="
 				+ fileAddress + ", type=" + type + ", uploadTime=" + uploadTime + ", uploaderName=" + uploaderName
-				+ "]";
+				+ ", status=" + status + "]";
 	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public CommonsMultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(CommonsMultipartFile file) {
+		this.file = file;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 	public int getFileId() {
 		return fileId;
 	}

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>登陆</title>
+<title>登录</title>
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/login.css"/>
 <!--[if IE 6]>
 <script type="text/javascript" src="js/DD_belatedPNG_0.0.8a-min.js"></script>
@@ -29,8 +29,10 @@
 	 <s:form action="lgNotice_findAll" method="get" namespace="/"> 
 	     <input type="submit" value="测试查询所有后勤通知"  class="btn btn-primary btn-block btn-large" />
 	 </s:form>
+	 <s:form action="files_findAll" method="get" namespace="/"> 
+	     <input type="submit" value="测试查询所有教务文件"  class="btn btn-primary btn-block btn-large" />
+	 </s:form>
 	
-	 <s:form action="user_register" method="get"> <input type="submit" value="注册" class="btn btn-primary btn-block btn-large"></s:form>
 </div>
 </div>
 </body>

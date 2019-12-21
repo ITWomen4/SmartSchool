@@ -47,4 +47,39 @@ public class LgNoticeServiceImpl implements LgNoticeService{
 		return pageBean;
 	}
 
+	@Override
+	public LgNotice findById(int noticeId) {
+		// TODO Auto-generated method stub
+		return lgNoticeDao.findById(noticeId);
+	}
+
+	@Override
+	public void save(LgNotice lgNotice) {
+		// TODO Auto-generated method stub
+		lgNoticeDao.save(lgNotice);
+	}
+
+	@Override
+	/**
+	 * 业务层员工删除
+	 */
+	public void delete(LgNotice lgNotice) {
+		// TODO Auto-generated method stub
+		lgNoticeDao.delete(lgNotice);
+	}
+
+	@Override
+	public List<LgNotice> findByNoticeName(String noticeName) {
+	
+		return lgNoticeDao.findByNoticeName(noticeName);
+
+		 
+	}
+
+	@Override
+	public void update(LgNotice lgNotice) {
+		// TODO Auto-generated method stub
+		lgNoticeDao.update(lgNotice);		
+	}
+
 }

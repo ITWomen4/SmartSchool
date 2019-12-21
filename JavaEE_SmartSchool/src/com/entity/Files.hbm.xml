@@ -13,5 +13,6 @@
 		<property name="type" column="type" length="20"></property>
 		<property name="uploadTime" column="uploadTime" ></property>
 		<property name="uploaderName" column="uploaderName" length="20"></property>
+		<property name="status" column="status"></property>
 	</class>
 </hibernate-mapping>

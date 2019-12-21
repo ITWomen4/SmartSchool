@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC 
     "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" 
-    "http://struts.apache.org/dtds/struts-2.3.dtd"> 
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 	<package name="ssh" extends="struts-default" namespace="/">
-		<action name="user_*" class="usersAction" method="{1}" >
+		<action name="user_*" class="usersAction" method="{1}">
 			<result name="INPUT">/login.jsp</result>
-			<result name="SUCCESS" type="redirect" >/mainpage.jsp</result>
+			<result name="SUCCESS" type="redirect">/mainpage.jsp</result>
 			<result name="register">/register.jsp</result>
 		</action>
-		<action name="lgNotice_*" class="lgNoticeAction" method="{1}" >
+		<action name="lgNotice_*" class="lgNoticeAction" method="{1}">
 			<result name="findAll">/jsp/lgNotice/listLgNotice.jsp</result>
+			<result name="goLgNoticeDetail">/jsp/lgNotice/detailLgNotice.jsp</result>
+			<result name="goAddLgNotice">/jsp/lgNotice/addLgNotice.jsp</result>
+			<result name="addSuccess" type="redirect">lgNotice_findAll.action </result>
+			<result name="deleteSuccess" type="redirect">lgNotice_findAll.action </result>
+			<result name="findResult" type="redirect">/jsp/lgNotice/resultNotice.jsp </result>
+			<result name="goEdit">/jsp/lgNotice/editNotice.jsp</result>
+			<result name="editSuccess" type="redirect">lgNotice_findAll.action </result>
+		</action>
+		<action name="files_*" class="filesAction" method="{1}">
+			<result name="findAll">/jsp/files/listFiles.jsp</result>
+			<result name="goUpload">/jsp/files/uploadFiles.jsp</result>
+			<result name="uploadSuccess" type="redirect">files_findAll.action </result>
 		</action>
 	</package>
 </struts>    
