@@ -12,4 +12,9 @@ public interface FilesDao {
 
 	void save(Files files);
 
+	Files findById(int fileId);
+
+	void delete(Files files);
+
+
 }

@@ -3,14 +3,14 @@
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="com.entity.Files" table="Files">
+	<class name="com.entity.Files" table="files">
 		<id name="fileId" column="fileId">
 			<generator class="native"></generator>		
 		</id>
-		<property name="fileName" column="fileName" length="20"></property>
+		<property name="fileName" column="fileName" length="255"></property>
 		<property name="fileFormat" column="fileFormat" length="20"></property>
-		<property name="fileAddress" column="fileAddress" length="20"></property>
-		<property name="type" column="type" length="20"></property>
+		<property name="fileAddress" column="fileAddress" length="255"></property>
+		<property name="type" column="type" ></property>
 		<property name="uploadTime" column="uploadTime" ></property>
 		<property name="uploaderName" column="uploaderName" length="20"></property>
 		<property name="status" column="status"></property>

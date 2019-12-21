@@ -1,6 +1,8 @@
 package com.action;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.Date;
@@ -21,6 +23,18 @@ public class FilesAction extends ActionSupport implements ModelDriven<Files>{
     private FilesService filesService;
 	// 当前页数
 	private Integer currPage = 1;
+	
+	 //封装文件标题请求参数的属性
+    private String title;
+    //封装上传文件域的属性
+    private File pic;
+    //封装上传文件类型的属性
+    private String picContentType;
+    //封装上传文件名的属性
+    private String picFileName;
+    //直接在struts.xml文件中配置的属性
+    private String savePath;
+    
 	@Override
 	public Files getModel() {
 		// TODO Auto-generated method stub
@@ -43,59 +57,106 @@ public class FilesAction extends ActionSupport implements ModelDriven<Files>{
 		ActionContext.getContext().getValueStack().push(pageBean);
 		return "findAll";
 	}
+	
+	
+	
 	//上传文件
-	public String upload() {
-		/**
+
+    //接受struts.xml文件配置值的方法
+    public void setSavePath(String value) {
+        this.savePath = value;
+    }
+
+    //返回上传文件的保存位置
+    private String getSavePath() throws Exception {
+        return ServletActionContext.getServletContext()
+                .getRealPath(savePath);
+    }
+
+    //文件标题的setter和getter方法
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return (this.title);
+    }
+
+    //上传文件对应文件内容的setter和getter方法
+    public void setPic(File pic) {
+        this.pic = pic;
+    }
+
+    public File getPic() {
+        return (this.pic);
+    }
+
+    //上传文件的文件类型的setter和getter方法
+    public void setPicContentType(String picContentType) {
+        this.picContentType = picContentType;
+    }
+
+    public String getPicContentType() {
+        return (this.picContentType);
+    }
+
+    //上传文件的文件名的setter和getter方法
+    public void setPicFileName(String picFileName) {
+        this.picFileName = picFileName;
+    }
+
+    public String getPicFileName() {
+        return (this.picFileName);
+    }
+	public String upload() throws FileNotFoundException, Exception {
+		 //以服务器的文件保存地址和原文件名建立上传文件输出流
+        FileOutputStream fos = new FileOutputStream(getSavePath()
+                + "\\" + getPicFileName());
+        FileInputStream fis = new FileInputStream(getPic());
+        byte[] buffer = new byte[1024];
+        int len = 0;
+        while ((len = fis.read(buffer)) > 0) {
+            fos.write(buffer, 0, len);
+        }
+        fos.close();
+        /**
 		 *  private String fileName;
 			private String fileFormat;
-			private String fileAddress;S
+			private String fileAddress;
 			private int type;
 			private Date uploadTime;
 			private String uploaderName;
 			private int status;//文件的状态 0代表删除 ，1代表正常
 		 */
-//		String fileName = files.getFile().getOriginalFilename();
-//		String newFileName = UUID.randomUUID() + files.getFileName();//存在服务器时的文件名
-//		String path = ServletActionContext.getServletContext().getRealPath("/file")+ "\\";
-//		File f = new File(path);
-		System.out.println("fileName:   "+files.getFile().getOriginalFilename());
-		System.out.println("path:   "+ServletActionContext.getServletContext().getRealPath("/file")+ "\\");
-		System.out.println("lllllllllllllllll:   "+files.getFile().toString());
-//		if (!f.exists())
-//			f.mkdirs();
-//		if (!files.getFile().isEmpty()) {
-//			try {
-//				FileOutputStream fos = new FileOutputStream(path + newFileName);
-//				InputStream in = files.getFile().getInputStream();
-//				int b = 0;
-//				while ((b = in.read()) != -1) {
-//					fos.write(b);
-//				}
-//				fos.close();
-//				in.close();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		files.setFileAddress(path+newFileName);
-//		files.setUploadTime(new Date());
-//		File fp = new File(path+newFileName);
-//		String fileType=fileName.substring(fileName.lastIndexOf("."),fileName.length());
-//		files.setFileFormat(fileType);
-//		files.setType(1);//1：教务通知，2：公共资料
+        files.setFileName(getTitle());
+        files.setFileAddress(getSavePath() + "\\" + getPicFileName());
+        files.setUploadTime(new Date());
+        String fileType=getPicFileName().substring(getPicFileName().lastIndexOf("."),getPicFileName().length());
+        files.setFileFormat(fileType);
+//        files.setFileFormat(".docx");
+        files.setType(1);//1：教务通知，2：公共资料
 //		//获取当前登录的用户保存在session中的用户名:
 //		//Users user = (Users)ActionContext.getContext().getSession().get("existEmployee");
 //		//files.setUploaderName(user.getUsername());
-//		files.setUploaderName("tammy");
-//		filesService.uploadFile(files);
-		return "uploadSuccess";
+		files.setUploaderName("tammy");
+		files.setStatus(1);
+		System.out.println("文件上传————————————"+files.toString());
+		filesService.uploadFile(files);     
+		return "Success";
 	}
 	
 	
 	public String goUpload(){
 		return "goUpload";
 	}
-
+	
+	
+	public String delete(){
+		Files thefile = filesService.findById(files.getFileId());
+		filesService.delete(thefile);
+		
+		return "Success";
+	}
 }
 
 

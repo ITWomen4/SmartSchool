@@ -20,9 +20,11 @@
 			<result name="editSuccess" type="redirect">lgNotice_findAll.action </result>
 		</action>
 		<action name="files_*" class="filesAction" method="{1}">
+			<!-- 动态设置Action的属性值 -->
+			<param name="savePath">/uploadFiles</param>	
 			<result name="findAll">/jsp/files/listFiles.jsp</result>
 			<result name="goUpload">/jsp/files/uploadFiles.jsp</result>
-			<result name="uploadSuccess" type="redirect">files_findAll.action </result>
+			<result name="Success" type="redirect">files_findAll.action</result>
 		</action>
 	</package>
 </struts>    

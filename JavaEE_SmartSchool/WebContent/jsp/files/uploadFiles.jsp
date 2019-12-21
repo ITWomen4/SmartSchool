@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,17 +10,14 @@
 <body>
 	<div class="authorbox">
 		<h2>上传文件:</h2>
-		<form action="files_upload" method="post" enctype="multipart/form-data">
-			文件名称:<input name="fileName"
-				style="BACKGROUND-COLOR: #E8F2DF; width: 350px; height: 25px"
-				required> <br> <br> <br> 
-				 文件路径: <input type="file" name="file"
-				style="BACKGROUND-COLOR: #E8F2DF; width: 350px;" required /><br>
-			<br>
-			 <br>
-			 <input type="hidden" value="1" name="status" /> <input
-				type="submit" value="发布文件" />
-		</form>
+		<s:form action="files_upload" method='post'
+			enctype="multipart/form-data">
+			<s:textfield name="title" label="文件标题" />
+			<br />
+			<s:file name="pic" label="选择文件" />
+			<br />
+			<s:submit value="上传" />
+		</s:form>
 	</div>
 </body>
 </html>

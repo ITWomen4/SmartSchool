@@ -13,7 +13,6 @@ public class Files {
 	private Date uploadTime;
 	private String uploaderName;
 	private int status;//文件的状态 0代表删除 ，1代表正常
-	private CommonsMultipartFile  file;
 	public Files() {
 		super();
 	}
@@ -27,14 +26,6 @@ public class Files {
 
 	public int getStatus() {
 		return status;
-	}
-
-	public CommonsMultipartFile getFile() {
-		return file;
-	}
-
-	public void setFile(CommonsMultipartFile file) {
-		this.file = file;
 	}
 
 	public void setStatus(int status) {

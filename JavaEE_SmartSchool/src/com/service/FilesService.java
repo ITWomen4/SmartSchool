@@ -9,4 +9,10 @@ public interface FilesService {
 
 	void uploadFile(Files files);
 
+	Files findById(int fileId);
+
+	void delete(Files files);
+
+
+
 }

@@ -49,4 +49,18 @@ public class FilesServiceImpl implements FilesService {
 		filesDao.save(files);
 	}
 
+	@Override
+	public Files findById(int fileId) {
+		// TODO Auto-generated method stub
+		return filesDao.findById(fileId);
+	}
+
+	@Override
+	public void delete(Files files) {
+		// TODO Auto-generated method stub
+		filesDao.delete(files);
+	}
+	
+	
+
 }

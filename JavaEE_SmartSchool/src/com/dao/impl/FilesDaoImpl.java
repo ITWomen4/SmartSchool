@@ -4,10 +4,8 @@ import java.util.List;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
 import com.dao.FilesDao;
 import com.entity.Files;
-import com.entity.LgNotice;
 
 public class FilesDaoImpl extends HibernateDaoSupport implements FilesDao {
 
@@ -17,8 +15,8 @@ public class FilesDaoImpl extends HibernateDaoSupport implements FilesDao {
 	 */
 	public int findCount() {
 		// TODO Auto-generated method stub
-		String hql="select count(*) from Files f where f.status=?";
-		List<Long> list = this.getHibernateTemplate().find(hql,1);
+		String hql="select count(*) from Files";
+		List<Long> list = this.getHibernateTemplate().find(hql);
 		if(list.size()>0){
 			return list.get(0).intValue();
 		}
@@ -30,7 +28,6 @@ public class FilesDaoImpl extends HibernateDaoSupport implements FilesDao {
 		// TODO Auto-generated method stub
 		DetachedCriteria criteria = DetachedCriteria.forClass(Files.class);
 		List<Files> list = this.getHibernateTemplate().findByCriteria(criteria,begin,pageSize);
-		System.out.println("DAOIMPL__________"+list);
 		return list;
 	}
 
@@ -38,6 +35,19 @@ public class FilesDaoImpl extends HibernateDaoSupport implements FilesDao {
 	public void save(Files files) {
 		// TODO Auto-generated method stub
 		this.getHibernateTemplate().save(files);
+	}
+
+	@Override
+	public Files findById(int fileId) {
+		// TODO Auto-generated method stub\
+		Files files = this.getHibernateTemplate().get(Files.class, fileId);
+		return files;
+	}
+
+	@Override
+	public void delete(Files files) {
+		this.getHibernateTemplate().delete(files);
+
 	}
 
 }
