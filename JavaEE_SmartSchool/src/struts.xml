@@ -13,18 +13,27 @@
 			<result name="findAll">/jsp/lgNotice/listLgNotice.jsp</result>
 			<result name="goLgNoticeDetail">/jsp/lgNotice/detailLgNotice.jsp</result>
 			<result name="goAddLgNotice">/jsp/lgNotice/addLgNotice.jsp</result>
-			<result name="addSuccess" type="redirect">lgNotice_findAll.action </result>
-			<result name="deleteSuccess" type="redirect">lgNotice_findAll.action </result>
-			<result name="findResult" type="redirect">/jsp/lgNotice/resultNotice.jsp </result>
+			<result name="addSuccess" type="redirect">lgNotice_findAll.action</result>
+			<result name="deleteSuccess" type="redirect">lgNotice_findAll.action</result>
+			<result name="findResult" type="redirect">/jsp/lgNotice/resultNotice.jsp</result>
 			<result name="goEdit">/jsp/lgNotice/editNotice.jsp</result>
-			<result name="editSuccess" type="redirect">lgNotice_findAll.action </result>
+			<result name="editSuccess" type="redirect">lgNotice_findAll.action</result>
 		</action>
 		<action name="files_*" class="filesAction" method="{1}">
 			<!-- 动态设置Action的属性值 -->
-			<param name="savePath">/uploadFiles</param>	
+			<param name="savePath">/uploadFiles</param>
 			<result name="findAll">/jsp/files/listFiles.jsp</result>
 			<result name="goUpload">/jsp/files/uploadFiles.jsp</result>
 			<result name="Success" type="redirect">files_findAll.action</result>
+			<result name="findResult" type="redirect">/jsp/files/resultFiles.jsp</result>
+		</action>
+		<action name="sourceFiles_*" class="filesAction" method="{1}">
+			<!-- 动态设置Action的属性值 -->
+			<param name="savePath">/uploadSourceFiles</param>
+			<result name="findAllSource">/jsp/sourceFiles/listSourceFiles.jsp</result>
+			<result name="goUploadSource">/jsp/sourceFiles/uploadSourceFiles.jsp</result>
+			<result name="SuccessSource" type="redirect">sourceFiles_findAllSource.action</result>
+			<result name="findSourceResult" type="redirect">/jsp/sourceFiles/resultSource.jsp</result>
 		</action>
 	</package>
 </struts>    

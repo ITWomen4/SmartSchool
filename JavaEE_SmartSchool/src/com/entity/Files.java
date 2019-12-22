@@ -9,7 +9,7 @@ public class Files {
 	private String fileName;
 	private String fileFormat;
 	private String fileAddress;
-	private int type;
+	private int type;//1：教务通知文件；2：公共资料；
 	private Date uploadTime;
 	private String uploaderName;
 	private int status;//文件的状态 0代表删除 ，1代表正常

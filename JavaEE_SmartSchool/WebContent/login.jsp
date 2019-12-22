@@ -32,6 +32,9 @@
 	 <s:form action="files_findAll" method="get" namespace="/"> 
 	     <input type="submit" value="测试查询所有教务文件"  class="btn btn-primary btn-block btn-large" />
 	 </s:form>
+	 <s:form action="sourceFiles_findAllSource" method="get" namespace="/"> 
+	     <input type="submit" value="测试查询所有公共资料"  class="btn btn-primary btn-block btn-large" />
+	 </s:form>
 	
 </div>
 </div>

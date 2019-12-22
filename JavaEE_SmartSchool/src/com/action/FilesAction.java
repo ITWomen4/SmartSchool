@@ -6,8 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import com.entity.Files;
+import com.entity.LgNotice;
 import com.entity.PageBean;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -59,7 +61,6 @@ public class FilesAction extends ActionSupport implements ModelDriven<Files>{
 	}
 	
 	
-	
 	//上传文件
 
     //接受struts.xml文件配置值的方法
@@ -109,39 +110,7 @@ public class FilesAction extends ActionSupport implements ModelDriven<Files>{
         return (this.picFileName);
     }
 	public String upload() throws FileNotFoundException, Exception {
-		 //以服务器的文件保存地址和原文件名建立上传文件输出流
-        FileOutputStream fos = new FileOutputStream(getSavePath()
-                + "\\" + getPicFileName());
-        FileInputStream fis = new FileInputStream(getPic());
-        byte[] buffer = new byte[1024];
-        int len = 0;
-        while ((len = fis.read(buffer)) > 0) {
-            fos.write(buffer, 0, len);
-        }
-        fos.close();
-        /**
-		 *  private String fileName;
-			private String fileFormat;
-			private String fileAddress;
-			private int type;
-			private Date uploadTime;
-			private String uploaderName;
-			private int status;//文件的状态 0代表删除 ，1代表正常
-		 */
-        files.setFileName(getTitle());
-        files.setFileAddress(getSavePath() + "\\" + getPicFileName());
-        files.setUploadTime(new Date());
-        String fileType=getPicFileName().substring(getPicFileName().lastIndexOf("."),getPicFileName().length());
-        files.setFileFormat(fileType);
-//        files.setFileFormat(".docx");
-        files.setType(1);//1：教务通知，2：公共资料
-//		//获取当前登录的用户保存在session中的用户名:
-//		//Users user = (Users)ActionContext.getContext().getSession().get("existEmployee");
-//		//files.setUploaderName(user.getUsername());
-		files.setUploaderName("tammy");
-		files.setStatus(1);
-		System.out.println("文件上传————————————"+files.toString());
-		filesService.uploadFile(files);     
+		this.uploadFile(1);
 		return "Success";
 	}
 	
@@ -155,6 +124,82 @@ public class FilesAction extends ActionSupport implements ModelDriven<Files>{
 		Files thefile = filesService.findById(files.getFileId());
 		filesService.delete(thefile);
 		
+		return "Success";
+	}
+	/**
+	 * 查询教务通知文件
+	 * @return
+	 */
+	public String search(){
+		List<Files> list = filesService.findByFileName(files.getFileName());
+		// 使用的是模型驱动，把查询后勤通知信息放入值栈中，采可以使用OGNL表达是获取
+		ActionContext.getContext().getSession().put("list", list);
+		return "findResult";
+	}
+	
+	
+	//公告资料：
+	/**
+	 * 分页查询后勤通知
+	 * @return
+	 */
+	public String findAllSource(){
+		PageBean<Files> pageBean = filesService.findSourceByPage(currPage);
+		// 使用的是模型驱动，把查询后勤通知信息放入值栈中，采可以使用OGNL表达是获取
+		ActionContext.getContext().getValueStack().push(pageBean);
+		return "findAllSource";
+	}
+	public String goUploadSource(){
+		return "goUploadSource";
+	}
+	
+	
+	public String deleteSource(){
+		Files thefile = filesService.findById(files.getFileId());
+		filesService.delete(thefile);
+		return "SuccessSource";
+	}
+	public String uploadSource() throws FileNotFoundException, Exception{
+		this.uploadFile(2);
+		return "SuccessSource";
+	}	
+	/**
+	 * 查询公共资料
+	 * @return
+	 */
+	public String searchSource(){
+		List<Files> list = filesService.findBySourceFileName(files.getFileName());
+		// 使用的是模型驱动，把查询后勤通知信息放入值栈中，采可以使用OGNL表达是获取
+		ActionContext.getContext().getSession().put("list", list);
+		return "findSourceResult";
+	}
+	
+	
+	//上传文件的公共方法：
+	public String uploadFile(int type) throws FileNotFoundException, Exception {
+		 //以服务器的文件保存地址和原文件名建立上传文件输出流
+       FileOutputStream fos = new FileOutputStream(getSavePath()
+               + "\\" + getPicFileName());
+       FileInputStream fis = new FileInputStream(getPic());
+       byte[] buffer = new byte[1024];
+       int len = 0;
+       while ((len = fis.read(buffer)) > 0) {
+           fos.write(buffer, 0, len);
+       }
+       fos.close();
+       files.setFileName(getTitle());
+       files.setFileAddress(getSavePath() + "\\" + getPicFileName());
+       files.setUploadTime(new Date());
+       String fileType=getPicFileName().substring(getPicFileName().lastIndexOf("."),getPicFileName().length());
+       files.setFileFormat(fileType);
+       files.setType(type);//1：教务通知，2：公共资料
+//		//获取当前登录的用户保存在session中的用户名:
+//		//Users user = (Users)ActionContext.getContext().getSession().get("existEmployee");
+//		//files.setUploaderName(user.getUsername());
+		files.setUploaderName("tammy");
+		files.setStatus(1);
+		System.out.println("文件上传————————————"+files.toString());
+		filesService.uploadFile(files);     
 		return "Success";
 	}
 }

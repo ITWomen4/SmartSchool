@@ -16,21 +16,16 @@
 		<table border="0" width="100%">
 			<tr>
 				<td></td>
-				<td align="center" style="font-size: 24px; color: #666">文件列表</td>
+				<td align="center" style="font-size: 24px; color: #666">教务通知文件查询结果</td>
 			</tr>
 			<tr>
-				<td align="left">
-					<a href="files_goUpload.action">上传</a>
-				</td>
 				<td align="right">
-					<form action="files_search" method="post">
-						<input type="text" name="fileName"placeholder="请输入通知标题" required maxLength="20">
-						<input type="submit" class="button"value="查询"> 
-					</form>
+						<a href="javascript:history.go(-1)">退回 </a>
 				</td>
 			</tr>
 		</table>
-		<table cellspacing="0" border="1" width="100%" > 
+
+		<table cellspacing="0" border="1"  aligin="center" width="100%"> 
 		<thead>
 			<tr>
 				<th>标题</th>
@@ -42,7 +37,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<s:iterator value="list" var="e">
+			<s:iterator value="%{#session.list}" var="e">
 				<tr>
 					<td align="center"><s:property value="#e.fileName" /></td>
 					<td align="center"><s:property value="#e.fileFormat" /></td>
@@ -61,30 +56,6 @@
 				</tr>
 			</s:iterator>
 		</tbody>
-	</table>
-	<br/>
-		<table border="0" cellspacing="0" cellpadding="0" width="900px">
-		<tr>
-			<td align="right">
-			<span>
-			     第<s:property value="currPage" />/<s:property value="totalPage" />页
-			</span>
-			&nbsp;&nbsp; 
-			<span>
-			    总记录数：<s:property value="totalCount" />&nbsp;&nbsp;
-			    每页显示:<s:property value="pageSize" /></span>&nbsp;&nbsp; 
-			<span>
-			   <s:if test="currPage != 1">
-					<a href="files_findAll.action?currPage=1">[首页]</a>&nbsp;&nbsp;
-                    <a href="files_findAll.action?currPage=<s:property value="currPage-1"/>">[上一页]</a>&nbsp;&nbsp;
-               </s:if> 
-               <s:if test="currPage != totalPage">
-					<a href="files_findAll.action?currPage=<s:property value="currPage+1"/>">[下一页]</a>&nbsp;&nbsp;
-                    <a href="files_findAll.action?currPage=<s:property value="totalPage"/>">[尾页]<s:property value="totalPage"/></a>&nbsp;&nbsp;
-               </s:if> 
-            </span>
-            </td>
-		</tr>
 	</table>
 	</div>
 </body>

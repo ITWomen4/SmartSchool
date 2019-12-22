@@ -10,9 +10,9 @@
 <body>
 	<div class="authorbox">
 		<h2>上传文件:</h2>
-		<s:form action="files_upload" method='post'
+		<s:form action="sourceFiles_uploadSource" method='post'
 			enctype="multipart/form-data">
-		    <s:hidden name="type" value="1"></s:hidden>
+			<s:hidden name="noticeId" value="2"></s:hidden>
 			<s:textfield name="title" label="文件标题" />
 			<br />
 			<s:file name="pic" label="选择文件" />

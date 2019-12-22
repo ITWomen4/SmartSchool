@@ -60,6 +60,48 @@ public class FilesServiceImpl implements FilesService {
 		// TODO Auto-generated method stub
 		filesDao.delete(files);
 	}
+	@Override
+	public List<Files> findByFileName(String fileName) {
+		// TODO Auto-generated method stub
+		return filesDao.findByFileName(fileName);
+	}
+	
+	
+	//公共资料：
+	@Override
+	public PageBean<Files> findSourceByPage(Integer currPage) {
+		// TODO Auto-generated method stub
+		PageBean<Files> pageBean = new PageBean<Files>();
+        // 封装当前页数
+        pageBean.setCurrPage(currPage);
+        // 封装每页记录数
+        int pageSize = 3;
+        pageBean.setPageSize(pageSize);
+        // 封装总记录数
+        int totalCount = filesDao.findSourceCount();
+        pageBean.setTotalCount(totalCount);
+        // 封装页数
+        int totalPage;
+        if(totalCount%pageSize==0){
+        	totalPage = totalCount/pageSize;
+        }else{
+        	totalPage = totalCount/pageSize + 1; 
+        }
+        pageBean.setTotalPage(totalPage);
+        // 封装当前页记录
+        int begin= (currPage - 1)*pageSize;
+        List<Files> list = filesDao.findSourceByPage(begin, pageSize);
+        pageBean.setList(list);
+		return pageBean;
+	}
+
+	@Override
+	public List<Files> findBySourceFileName(String fileName) {
+		// TODO Auto-generated method stub
+		return filesDao.findBySourceFileName(fileName);
+	}
+
+
 	
 	
 

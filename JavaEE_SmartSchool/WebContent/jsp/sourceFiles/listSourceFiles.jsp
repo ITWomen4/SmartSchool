@@ -16,14 +16,14 @@
 		<table border="0" width="100%">
 			<tr>
 				<td></td>
-				<td align="center" style="font-size: 24px; color: #666">文件列表</td>
+				<td align="center" style="font-size: 24px; color: #666">公共资料列表</td>
 			</tr>
 			<tr>
 				<td align="left">
-					<a href="files_goUpload.action">上传</a>
+					<a href="sourceFiles_goUploadSource.action">上传</a>
 				</td>
 				<td align="right">
-					<form action="files_search" method="post">
+					<form action="sourceFiles_searchSource" method="post">
 						<input type="text" name="fileName"placeholder="请输入通知标题" required maxLength="20">
 						<input type="submit" class="button"value="查询"> 
 					</form>
@@ -49,12 +49,12 @@
 					<td align="center"><s:property value="#e.uploaderName" /></td>
 					<td align="center"><s:date format="yyyy-MM-dd" name="#e.uploadTime" /></td>
 					<td align="center">
-					    <a href="files_findById.action?fileId=<s:property value="#e.fileId"/>">
+					    <a href="sourceFiles_findById.action?fileId=<s:property value="#e.fileId"/>">
 					       <img src="${pageContext.request.contextPath }/images/download.png" />
 					    </a>
 					</td>
 					<td align="center">
-					    <a href="files_delete.action?fileId=<s:property value="#e.fileId"/>">
+					    <a href="sourceFiles_deleteSource.action?fileId=<s:property value="#e.fileId"/>">
 					    	<img src="${pageContext.request.contextPath }/images/delete.png" />
 					    </a>
 					</td>
@@ -75,12 +75,12 @@
 			    每页显示:<s:property value="pageSize" /></span>&nbsp;&nbsp; 
 			<span>
 			   <s:if test="currPage != 1">
-					<a href="files_findAll.action?currPage=1">[首页]</a>&nbsp;&nbsp;
-                    <a href="files_findAll.action?currPage=<s:property value="currPage-1"/>">[上一页]</a>&nbsp;&nbsp;
+					<a href="sourceFiles_findAllSource.action?currPage=1">[首页]</a>&nbsp;&nbsp;
+                    <a href="sourceFiles_findAllSource.action?currPage=<s:property value="currPage-1"/>">[上一页]</a>&nbsp;&nbsp;
                </s:if> 
                <s:if test="currPage != totalPage">
-					<a href="files_findAll.action?currPage=<s:property value="currPage+1"/>">[下一页]</a>&nbsp;&nbsp;
-                    <a href="files_findAll.action?currPage=<s:property value="totalPage"/>">[尾页]<s:property value="totalPage"/></a>&nbsp;&nbsp;
+					<a href="sourceFiles_findAllSource.action?currPage=<s:property value="currPage+1"/>">[下一页]</a>&nbsp;&nbsp;
+                    <a href="sourceFiles_findAllSource.action?currPage=<s:property value="totalPage"/>">[尾页]<s:property value="totalPage"/></a>&nbsp;&nbsp;
                </s:if> 
             </span>
             </td>
