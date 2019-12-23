@@ -35,5 +35,6 @@
 			<result name="SuccessSource" type="redirect">sourceFiles_findAllSource.action</result>
 			<result name="findSourceResult" type="redirect">/jsp/sourceFiles/resultSource.jsp</result>
 		</action>
+		
 	</package>
 </struts>    

@@ -5,6 +5,8 @@
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+	//response.setHeader("content-disposition", "attachment;filename=" + "");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -71,15 +73,17 @@
 										<td align="center"><s:property value="#e.uploaderName" /></td>
 										<td align="center"><s:date format="yyyy-MM-dd"
 												name="#e.uploadTime" /></td>
-										<td style="text-align: center;"><a
-											href="<s:property value="#e.fileAddress"/>"> <img
-												src="${pageContext.request.contextPath }/images/download.png" />
-										</a></td>
-										<td style="text-align: center;"><a
-											href="files_delete.action?fileId=<s:property value="#e.fileId"/>">
-												<img
-												src="${pageContext.request.contextPath }/images/delete.png" />
-										</a></td>
+										<td style="text-align: center;">
+											 <a href="<s:property value="#e.fileAddress"/>" > 
+												<img src="${pageContext.request.contextPath }/images/download.png" />
+											</a>
+										</td>
+										
+										<td style="text-align: center;">
+											<a href="files_delete.action?fileId=<s:property value="#e.fileId"/>">
+												<img src="${pageContext.request.contextPath }/images/delete.png" />
+											</a>
+										</td>
 									</tr>
 								</s:iterator>
 							</table>
@@ -106,5 +110,6 @@
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>
