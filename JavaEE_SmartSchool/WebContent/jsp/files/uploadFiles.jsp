@@ -24,12 +24,12 @@
 					<div class="container">
 						<div class="column">
 							<div >
-								<a href="#"><img src="${pageContext.request.contextPath }/images/logoSmart.png" alt="MyPassion" class="logoImg"/></a>
+								<a href="${pageContext.request.contextPath }/index.jsp"><img src="${pageContext.request.contextPath }/images/logoSmart.png" alt="MyPassion" class="logoImg"/></a>
 							</div>
 
 							<div class="search">
 								<form action="files_search" method="post">
-									<input type="text" name="fileName" placeholder="查找."
+									<input type="text" name="fileName" placeholder="请输入通知标题"
 										required maxLength="20" class="ft" /> 
 									<input type="submit" value="" class="fs">
 								</form>
@@ -38,7 +38,7 @@
 								<ul class="sf-menu">
 									<li><a href="files_findAll.action">教务通知文件</a></li>
 									<li class="current"><a href="files_goUpload.action">上传文件</a></li>
-									<li><a href="#">返回主页</a></li>
+									<li><a href="${pageContext.request.contextPath }/index.jsp">返回主页</a></li>
 								</ul>
 							</nav>
 						</div>

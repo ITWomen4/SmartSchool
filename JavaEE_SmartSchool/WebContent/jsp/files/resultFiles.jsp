@@ -28,7 +28,7 @@
 					<div class="container">
 						<div class="column">
 							<div >
-								<a href="#"><img src="${pageContext.request.contextPath }/images/logoSmart.png" alt="MyPassion" class="logoImg"/></a>
+								<a href="${pageContext.request.contextPath }/index.jsp"><img src="${pageContext.request.contextPath }/images/logoSmart.png" alt="MyPassion" class="logoImg"/></a>
 							</div>
 
 							<div class="search">
@@ -43,7 +43,7 @@
 								<ul class="sf-menu">
 									<li class="current"><a href="files_findAll.action">教务通知文件</a></li>
 									<li><a href="files_goUpload.action">上传文件</a></li>
-									<li><a href="#">返回主页</a></li>
+									<li><a href="${pageContext.request.contextPath }/index.jsp">返回主页</a></li>
 									<li><a href="files_findAll.action">返回列表</a></li>
 								</ul>
 							</nav>

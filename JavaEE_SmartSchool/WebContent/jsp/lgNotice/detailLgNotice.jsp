@@ -27,7 +27,7 @@
 					<div class="container">
 						<div class="column">
 							<div >
-								<a href="#"><img src="${pageContext.request.contextPath }/images/logoSmart.png" alt="MyPassion" class="logoImg"/></a>
+								<a href="${pageContext.request.contextPath }/index.jsp"><img src="${pageContext.request.contextPath }/images/logoSmart.png" alt="MyPassion" class="logoImg"/></a>
 							</div>
 
 							<div class="search">
@@ -42,7 +42,7 @@
 								<ul class="sf-menu">
 									<li class="current"><a href="lgNotice_findAll.action">后勤通知</a></li>
 									<li><a href="lgNotice_goAddLgNotice.action">发布后勤通知</a></li>
-									<li><a href="#">返回主页</a></li>
+									<li><a href="${pageContext.request.contextPath }/index.jsp">返回主页</a></li>
 									<li><a href="lgNotice_findAll.action">返回列表</a></li>
 								</ul>
 							</nav>
@@ -57,7 +57,7 @@
 								<div width="60%">
 									<center><h3>《<s:property value="%{model.noticeName}"/>》</h3></center>
 									<span class="lgBold">具体内容：</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<span><s:property value="%{model.content}"/></span><br><br><br><br>
+									<span><s:property value="%{model.content}"/></span><br><br>
 									
 									<span style="float:right;" class="lgBold">发布者：<s:property value="%{model.uploaderName}"/></span><br><br>
 									<span style="float:right;" class="lgBold">发布时间：<s:date format="yyyy-MM-dd" name="%{model.uploadTime}" /></span><br><br>

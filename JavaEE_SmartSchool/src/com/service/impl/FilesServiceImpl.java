@@ -23,7 +23,7 @@ public class FilesServiceImpl implements FilesService {
         // 封装当前页数
         pageBean.setCurrPage(currPage);
         // 封装每页记录数
-        int pageSize = 8;
+        int pageSize = 16;
         pageBean.setPageSize(pageSize);
         // 封装总记录数
         int totalCount = filesDao.findCount();
@@ -75,7 +75,7 @@ public class FilesServiceImpl implements FilesService {
         // 封装当前页数
         pageBean.setCurrPage(currPage);
         // 封装每页记录数
-        int pageSize = 8;
+        int pageSize = 16;
         pageBean.setPageSize(pageSize);
         // 封装总记录数
         int totalCount = filesDao.findSourceCount();

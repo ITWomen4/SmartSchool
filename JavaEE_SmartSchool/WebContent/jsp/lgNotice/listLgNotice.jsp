@@ -29,7 +29,7 @@
 					<div class="container">
 						<div class="column">
 							<div >
-								<a href="#"><img src="${pageContext.request.contextPath }/images/logoSmart.png" alt="MyPassion" class="logoImg"/></a>
+								<a href="${pageContext.request.contextPath }/index.jsp"><img src="${pageContext.request.contextPath }/images/logoSmart.png" alt="MyPassion" class="logoImg"/></a>
 							</div>
 
 							<div class="search">
@@ -43,7 +43,7 @@
 								<ul class="sf-menu">
 									<li class="current"><a href="lgNotice_findAll.action">后勤通知</a></li>
 									<li><a href="lgNotice_goAddLgNotice.action">发布后勤通知</a></li>
-									<li><a href="#">返回主页</a></li>
+									<li><a href="${pageContext.request.contextPath }/index.jsp">返回主页</a></li>
 								</ul>
 							</nav>
 						</div>
@@ -94,7 +94,7 @@
               								</s:if>
                 							<s:if test="currPage != totalPage">
 												<a href="lgNotice_findAll.action?currPage=<s:property value="currPage+1"/>">[下一页]</a>&nbsp;&nbsp;
-                    							<a href="lgNotice_findAll.action?currPage=<s:property value="totalPage"/>">[尾页]<s:property value="totalPage" /></a>&nbsp;&nbsp;
+                    							<a href="lgNotice_findAll.action?currPage=<s:property value="totalPage"/>">[尾页]&nbsp;&nbsp;<s:property value="totalPage" /></a>
                								</s:if>
 									</span>
 									<br><br>
