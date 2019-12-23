@@ -9,54 +9,96 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>教务通知文件</title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/images/smart.png" />
+
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/css/960.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/css/base.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/css/style.css" />
+<title>教务通知文件查询结果</title>
 </head>
 <body>
-	<div style="width:60%;margin-left:20%;">
-		<table border="0" width="100%">
-			<tr>
-				<td></td>
-				<td align="center" style="font-size: 24px; color: #666">教务通知文件查询结果</td>
-			</tr>
-			<tr>
-				<td align="right">
-						<a href="javascript:history.go(-1)">退回 </a>
-				</td>
-			</tr>
-		</table>
+	<div class="body-wrapper">
+		<div class="controller">
+			<div class="controller2">
+				<!-- Header -->
+				<header id="header">
+					<div class="container">
+						<div class="column">
+							<div >
+								<a href="#"><img src="${pageContext.request.contextPath }/images/logoSmart.png" alt="MyPassion" class="logoImg"/></a>
+							</div>
 
-		<table cellspacing="0" border="1"  aligin="center" width="100%"> 
-		<thead>
-			<tr>
-				<th>标题</th>
-				<th>文件格式</th>
-				<th>发布者</th>
-				<th>发布时间</th>
-				<th>下载</th>
-				<th>删除</th>
-			</tr>
-		</thead>
-		<tbody>
-			<s:iterator value="%{#session.list}" var="e">
-				<tr>
-					<td align="center"><s:property value="#e.fileName" /></td>
-					<td align="center"><s:property value="#e.fileFormat" /></td>
-					<td align="center"><s:property value="#e.uploaderName" /></td>
-					<td align="center"><s:date format="yyyy-MM-dd" name="#e.uploadTime" /></td>
-					<td align="center">
-					    <a href="files_findById.action?fileId=<s:property value="#e.fileId"/>">
-					       <img src="${pageContext.request.contextPath }/images/download.png" />
-					    </a>
-					</td>
-					<td align="center">
-					    <a href="files_delete.action?fileId=<s:property value="#e.fileId"/>">
-					    	<img src="${pageContext.request.contextPath }/images/delete.png" />
-					    </a>
-					</td>
-				</tr>
-			</s:iterator>
-		</tbody>
-	</table>
+							<div class="search">
+								<form action="files_search" method="post">
+									<!--  <input type="text" name="fileName" placeholder="查找."
+										required maxLength="20" class="ft" /> 
+									<input type="submit" value="" class="fs">
+									-->
+								</form>
+							</div>
+							<nav id="nav">
+								<ul class="sf-menu">
+									<li class="current"><a href="files_findAll.action">教务通知文件</a></li>
+									<li><a href="files_goUpload.action">上传文件</a></li>
+									<li><a href="#">返回主页</a></li>
+									<li><a href="files_findAll.action">返回列表</a></li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</header>
+
+				<!-- Content -->
+				<section id="content">
+					<div class="container">
+						<!-- 如果查询结果不为空则显示列表 -->
+						<s:if test="#session.list.isEmpty()==false">
+							<div class="breadcrumbs column"></div>
+							<div class="column">
+								<table>
+									<tr class="thStyle">
+										<th>标题</th>
+										<th>文件格式</th>
+										<th>发布者</th>
+										<th>发布时间</th>
+										<th>下载</th>
+										<th>删除</th>
+									</tr>
+									<s:iterator value="%{#session.list}" var="e">
+										<tr>
+											<td align="center"><s:property value="#e.fileName" /></td>
+											<td align="center"><s:property value="#e.fileFormat" /></td>
+											<td align="center"><s:property value="#e.uploaderName" /></td>
+											<td align="center"><s:date format="yyyy-MM-dd"
+													name="#e.uploadTime" /></td>
+											<td align="center"><a
+												href="files_findById.action?fileId=<s:property value="#e.fileId"/>">
+													<img
+													src="${pageContext.request.contextPath }/images/download.png" />
+											</a></td>
+											<td align="center"><a
+												href="files_delete.action?fileId=<s:property value="#e.fileId"/>">
+													<img
+													src="${pageContext.request.contextPath }/images/delete.png" />
+											</a></td>
+										</tr>
+									</s:iterator>
+								</table>
+							</div>
+						</s:if>
+					</div>
+					<!-- 如果查询结果为空则显示提示信息 -->
+					<s:if test="#session.list.isEmpty()==true">
+						<div class="notFound">
+							<span>暂无数据</span>
+						</div>
+					</s:if>
+				</section>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

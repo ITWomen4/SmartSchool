@@ -5,43 +5,73 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-</head>
+<meta charset="UTF-8">
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/images/smart.png" />
 
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/css/960.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/css/base.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/css/style.css" />
+<title>修改后勤通知</title>
+</head>
 <body>
-	<table border="0" width="600px">
-		<tr>
-			<td align="center" style="font-size: 24px; color: #666">后勤通知信息修改</td>
-		</tr>
-		<tr>
-			<td align="right">
-			    <a href="javascript:document.getElementById('saveForm').submit()">保存</a>
-				&nbsp;&nbsp; 
-				<a href="javascript:history.go(-1)">退回 </a>
-		    </td>
-		</tr>
-	</table>
-	<br/>
-	<br/>
-	<!-- action对应一个action标签，id对应提交时的对应关系 -->
-	<s:form id="saveForm" action="lgNotice_edit" method="post" namespace="/" theme="simple">
-		<s:hidden name="noticeId" value="%{model.noticeId}"></s:hidden>
-		<s:hidden name="uploaderName" value="%{model.uploaderName}"></s:hidden>
-		<s:hidden name="uploadTime" value="%{model.uploadTime}"></s:hidden>
-		<table style="font-size: :16px">
-			<tr>
-				<td align="right">标题：</td>
-				<td><s:textfield value="%{model.noticeName}" name="noticeName" /></td>
-			</tr>
-			<tr>
-				<td align="right">具体内容：</td>
-				<td><s:textfield value="%{model.content}" name="content" /></td>
-			</tr>
-		</table>
-	</s:form>
+<div class="body-wrapper">
+		<div class="controller">
+			<div class="controller2">
+				<!-- Header -->
+				<header id="header">
+					<div class="container">
+						<div class="column">
+							<div >
+								<a href="#"><img src="${pageContext.request.contextPath }/images/logoSmart.png" alt="MyPassion" class="logoImg"/></a>
+							</div>
+							<div class="search">
+								<form action="lgNotice_search" method="post">
+									<input type="text" name="noticeName" placeholder="请输入通知标题"
+										required maxLength="20" class="ft" /> 
+									<input type="submit" value="" class="fs">
+								</form>
+							</div>
+							<nav id="nav">
+								<ul class="sf-menu">
+									<li><a href="lgNotice_findAll.action">后勤通知</a></li>
+									<li class="current"><a href="lgNotice_goAddLgNotice.action">发布后勤通知</a></li>
+									<li><a href="#">返回主页</a></li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</header>
+
+				<!-- Content -->
+				<section id="content">
+					<div class="upload">
+						<h3>编辑后勤通知</h3>
+						<!-- action对应一个action标签，id对应提交时的对应关系 -->
+						<s:form id="saveForm" action="lgNotice_edit" method="post" namespace="/" theme="simple">
+							<s:hidden name="noticeId" value="%{model.noticeId}"></s:hidden>
+							<s:hidden name="uploaderName" value="%{model.uploaderName}"></s:hidden>
+							<s:hidden name="uploadTime" value="%{model.uploadTime}"></s:hidden>
+					
+							<label style="font-size:16px;">通知标题：</label>
+							<textarea name="noticeName" cols="50" rows="2" style="BACKGROUND-COLOR: #E8F2DF; width: 340px;" required maxLength="255"><s:property value="%{model.noticeName}"/></textarea>
+							<br> <br>
+							<label style="font-size:16px;">具体内容：</label>
+						    <!--<input type="textfield" name="content" style="BACKGROUND-COLOR: #E8F2DF; width: 330px;" required /> -->
+							<textarea name="content" cols="50" rows="3" style="BACKGROUND-COLOR: #E8F2DF; width: 340px;" required maxLength="255"><s:property value="%{model.content}"/></textarea>
+							<input type="submit" value="保存" class="uploadBtn" style="margin-right:3px;">
+						</s:form>
+					</div>
+				</section>
+
+				
+			</div>
+		</div>
+</div>
 </body>
 </html> 

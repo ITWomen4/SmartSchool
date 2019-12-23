@@ -5,20 +5,65 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>教务通知文件</title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/images/smart.png" />
+
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/css/960.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/css/base.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/css/style.css" />
+<title>发布教务通知文件</title>
 </head>
 <body>
-	<div class="authorbox">
-		<h2>上传文件:</h2>
-		<s:form action="files_upload" method='post'
-			enctype="multipart/form-data">
-		    <s:hidden name="type" value="1"></s:hidden>
-			<s:textfield name="title" label="文件标题" />
-			<br />
-			<s:file name="pic" label="选择文件" />
-			<br />
-			<s:submit value="上传" />
-		</s:form>
+	<div class="body-wrapper">
+		<div class="controller">
+			<div class="controller2">
+				<!-- Header -->
+				<header id="header">
+					<div class="container">
+						<div class="column">
+							<div >
+								<a href="#"><img src="${pageContext.request.contextPath }/images/logoSmart.png" alt="MyPassion" class="logoImg"/></a>
+							</div>
+
+							<div class="search">
+								<form action="files_search" method="post">
+									<input type="text" name="fileName" placeholder="查找."
+										required maxLength="20" class="ft" /> 
+									<input type="submit" value="" class="fs">
+								</form>
+							</div>
+							<nav id="nav">
+								<ul class="sf-menu">
+									<li><a href="files_findAll.action">教务通知文件</a></li>
+									<li class="current"><a href="files_goUpload.action">上传文件</a></li>
+									<li><a href="#">返回主页</a></li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</header>
+
+				<!-- Content -->
+				<section id="content">
+					<div class="upload">
+						<h3>上传教务通知文件</h3>
+						<form action="files_upload" method='post' enctype="multipart/form-data">
+							<label style="font-size:16px;">文件标题：</label>
+							<input type="text" name="title"  style="BACKGROUND-COLOR: #E8F2DF; width: 344px; height: 25px" required maxLength="100"/> 
+							<br> <br>
+							<label style="font-size:16px;">请选择文件：</label>
+						    <input type="file" name="pic" style="BACKGROUND-COLOR: #E8F2DF; width: 330px;" required /> 
+							<br> <br>
+							<!-- <s:submit value="上传" class="uploadBtn"/> -->
+							<input type="submit" value="上传" class="uploadBtn">
+						</form>
+					</div>
+					<!-- /Main Content -->
+				</section>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
