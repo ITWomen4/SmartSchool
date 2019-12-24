@@ -14,7 +14,7 @@ import javax.servlet.ServletContext;
 import com.entity.Files;
 import com.entity.LgNotice;
 import com.entity.PageBean;
-import com.entity.Users;
+import com.entity.User;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -201,8 +201,8 @@ public class FilesAction extends ActionSupport implements ModelDriven<Files>{
       files.setFileFormat(fileType);
       files.setType(type);//1：教务通知，2：公共资料
 //		//获取当前登录的用户保存在session中的用户名:
-		Users user = (Users)ActionContext.getContext().getSession().get("existUser");
-		files.setUploaderName(user.getUsername());
+		User user = (User)ActionContext.getContext().getSession().get("existUser");
+		files.setUploaderName(user.getUserName());
 //		files.setUploaderName("tammy");
 		files.setStatus(1);
 		filesService.uploadFile(files);     

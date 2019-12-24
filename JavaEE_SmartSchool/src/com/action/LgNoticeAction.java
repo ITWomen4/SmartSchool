@@ -6,14 +6,14 @@ import java.util.List;
 
 import com.entity.LgNotice;
 import com.entity.PageBean;
-import com.entity.Users;
+import com.entity.User;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.service.LgNoticeService;
 
 public class LgNoticeAction extends ActionSupport implements ModelDriven<LgNotice>{
-	// 模型驱动使用的对象，自动注入employee的数据 
+	// 模型驱动使用的对象，自动注入lgNotice的数据 
     private LgNotice lgNotice = new LgNotice();
  // struts2整合spring,注入业务层
     private LgNoticeService lgNoticeService;
@@ -63,8 +63,8 @@ public class LgNoticeAction extends ActionSupport implements ModelDriven<LgNotic
 	 */
 	public String save(){
 		//获取当前登录的用户保存在session中的用户名:
-		Users user = (Users)ActionContext.getContext().getSession().get("existUser");
-		lgNotice.setUploaderName(user.getUsername());
+		User user = (User)ActionContext.getContext().getSession().get("existUser");
+		lgNotice.setUploaderName(user.getUserName());
 		
 //		lgNotice.setUploaderName("tammy");
 		lgNotice.setUploadTime(new Date());

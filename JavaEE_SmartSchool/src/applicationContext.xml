@@ -43,20 +43,16 @@
 		<!-- 配置关联关系映射文件 -->
 		<property name="mappingResources">
 			<list>
-				<value>com/entity/Users.hbm.xml</value>
 				<value>com/entity/Files.hbm.xml</value>
 				<value>com/entity/LgNotice.hbm.xml</value>
+				
+				<value>com/entity/Book.hbm.xml</value>
+				<value>com/entity/User.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
 
 	<!-- 配置action，action交由spring管理 -->
-	<bean id="usersAction" class="com.action.UsersAction"
-		scope="prototype">
-		<!-- 手动注入service -->
-		<property name="usersService" ref="usersService"></property>
-	</bean>
-
 	<bean id="lgNoticeAction" class="com.action.LgNoticeAction"
 		scope="prototype">
 		<property name="lgNoticeService" ref="lgNoticeService"></property>
@@ -67,11 +63,19 @@
 		<property name="filesService" ref="filesService"></property>
 	</bean>
 	
+	<bean id="userAction" class="com.action.UserAction"
+		scope="prototype">
+		<!-- 手动注入service -->
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="bookAction" class="com.action.BookAction"
+		scope="prototype">
+		<!-- 手动注入service -->
+		<property name="bookService" ref="bookService"></property>
+	</bean>
+	
 	
 	<!-- 配置业务层service -->
-	<bean id="usersService" class="com.service.impl.UsersServiceImpl">
-		<property name="usersDao" ref="usersDao"></property>
-	</bean>
 	<bean id="lgNoticeService" class="com.service.impl.LgNoticeServiceImpl">
 		<property name="lgNoticeDao" ref="lgNoticeDao"></property>
 	</bean>
@@ -79,15 +83,26 @@
 		<property name="filesDao" ref="filesDao"></property>
 	</bean>
 
+	<bean id="userService" class="com.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<bean id="bookService" class="com.service.impl.BookServiceImpl">
+		<property name="bookDao" ref="bookDao"></property>
+	</bean>
+
 
 	<!-- 配置dao -->
-	<bean id="usersDao" class="com.dao.impl.UsersDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
 	<bean id="lgNoticeDao" class="com.dao.impl.LgNoticeDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="filesDao" class="com.dao.impl.FilesDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="userDao" class="com.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="bookDao" class="com.dao.impl.BookDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	

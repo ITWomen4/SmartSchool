@@ -2,12 +2,13 @@ package com.service.impl;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.dao.FilesDao;
 import com.entity.Files;
-import com.entity.LgNotice;
 import com.entity.PageBean;
 import com.service.FilesService;
-
+@Transactional
 public class FilesServiceImpl implements FilesService {
 	//注入dao
 	private FilesDao filesDao;

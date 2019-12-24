@@ -4,11 +4,13 @@
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 	<package name="ssh" extends="struts-default" namespace="/">
-		<action name="user_*" class="usersAction" method="{1}">
+	<!-- 田媛： -->
+		<!--  <action name="user_*" class="usersAction" method="{1}">
 			<result name="INPUT">/login.jsp</result>
 			<result name="SUCCESS" type="redirect">/index.jsp</result>
 			<result name="outlog" type="redirect">/index.jsp</result>
 		</action>
+		-->
 		<action name="lgNotice_*" class="lgNoticeAction" method="{1}">
 			<result name="findAll">/jsp/lgNotice/listLgNotice.jsp</result>
 			<result name="goLgNoticeDetail">/jsp/lgNotice/detailLgNotice.jsp</result>
@@ -36,5 +38,67 @@
 			<result name="findSourceResult" type="redirect">/jsp/sourceFiles/resultSource.jsp</result>
 		</action>
 		
+		 <action name="user_outlog" class="com.action.UserAction" method="outlog">
+			<result name="outlog">/index.jsp</result>
+		</action>
+		
+		
+	<!-- 孙钱： -->
+		<action name="checklogin" class="com.action.UserAction" method="check">
+            <result type="stream" name="index">
+            </result>
+            <result name="teacher">teacher.jsp</result>
+        </action>
+        
+        
+        <action name="islogin" class="com.action.UserAction" method="islogin">
+            <result type="stream" name="index">
+            </result>
+        </action>
+        
+        <action name="exit" class="com.action.UserAction" method="exit">
+           <result name="index" type="redirect">
+         	  index.jsp
+            </result>
+        </action>
+        
+        <action name="showbooks" class="com.action.BookAction" method="showbooks">
+            <result name="allbk">
+         	   /jsp/bk/allbk.jsp
+            </result>
+        </action>
+        
+         <action name="mybook" class="com.action.BookAction" method="mybook">
+            <result name="mybk">
+         	   /jsp/bk/mybk.jsp
+            </result>
+            <result name="index" type="redirect">
+         	  index.jsp
+            </result>
+        </action>
+        
+        <action name="delbook" class="com.action.BookAction" method="delbook">
+            <result name="mybk2" type="chain">
+         	   mybook
+            </result>
+        </action>
+        
+        <action name="pubook" class="com.action.BookAction" method="pubook">
+            <result name="mybk" type="chain">
+         	   mybook
+            </result>
+            <result name="index" type="redirect">
+         	  index.jsp
+            </result>
+        </action>
+        
+         <action name="prepubook" class="com.action.BookAction" method="prepubook">
+            <result name="pubk">
+         	   /jsp/bk/pubk.jsp
+            </result>
+            <result name="index" type="redirect">
+         	  index.jsp
+            </result>
+        </action>
 	</package>
 </struts>    
