@@ -13,8 +13,8 @@ public class UsersDaoImpl extends HibernateDaoSupport implements UsersDao {
 
 	public Users findByUsernameAndPassword(Users user) {
 		// TODO Auto-generated method stub
-		String hql = "from Users where username=? and password=?";
-		List<Users> UsersList = this.getHibernateTemplate().find(hql,user.getUsername(),user.getPassword());
+		String hql = "from Users where user_id=? and password=?";
+		List<Users> UsersList = this.getHibernateTemplate().find(hql,user.getUser_id(),user.getPassword());
 		if(UsersList.size()>0){
 			System.out.println(UsersList.get(0).getUsername()+"³É¹¦µÇÂ¼");
 			return UsersList.get(0);

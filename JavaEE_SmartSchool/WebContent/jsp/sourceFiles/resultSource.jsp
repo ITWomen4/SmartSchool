@@ -28,22 +28,26 @@
 				<header id="header">
 					<div class="container">
 						<div class="column">
-							<div >
-								<a href="${pageContext.request.contextPath }/index.jsp"><img src="${pageContext.request.contextPath }/images/logoSmart.png" alt="MyPassion" class="logoImg"/></a>
+							<div>
+								<a href="${pageContext.request.contextPath }/index.jsp"><img
+									src="${pageContext.request.contextPath }/images/logo.png"
+									alt="MyPassion" class="logoImg2" /></a>
 							</div>
-
+						</div>
+						<div class="column">
 							<div class="search">
 								<form action="sourceFiles_searchSource" method="post">
-									<!--  <input type="text" name="fileName" placeholder="查找."
+									<input type="text" name="fileName" placeholder="请输入资料标题"
 										required maxLength="20" class="ft" /> 
 									<input type="submit" value="" class="fs">
-									-->
 								</form>
 							</div>
 							<nav id="nav">
 								<ul class="sf-menu">
 									<li class="current"><a href="sourceFiles_findAllSource.action">公共资料</a></li>
-									<li><a href="sourceFiles_goUploadSource.action">上传资料</a></li>
+									<s:if test="#session.existUser.role==1">
+										<li><a href="sourceFiles_goUploadSource.action">上传资料</a></li>
+									</s:if>
 									<li><a href="${pageContext.request.contextPath }/index.jsp">返回主页</a></li>
 									<li><a href="sourceFiles_findAllSource.action">返回列表</a></li>
 								</ul>
@@ -66,7 +70,9 @@
 										<th>发布者</th>
 										<th>发布时间</th>
 										<th>下载</th>
-										<th>删除</th>
+										<s:if test="#session.existUser.role==1">
+											<th>删除</th>
+										</s:if>
 									</tr>
 									<s:iterator value="%{#session.list}" var="e">
 										<tr>
@@ -80,11 +86,13 @@
 													<img
 													src="${pageContext.request.contextPath }/images/download.png" />
 											</a></td>
-											<td align="center"><a
-												href="sourceFiles_delete.action?fileId=<s:property value="#e.fileId"/>">
-													<img
-													src="${pageContext.request.contextPath }/images/delete.png" />
-											</a></td>
+											<s:if test="#session.existUser.role==1">
+												<td align="center"><a
+													href="sourceFiles_delete.action?fileId=<s:property value="#e.fileId"/>">
+														<img
+														src="${pageContext.request.contextPath }/images/delete.png" />
+												</a></td>
+											</s:if>
 										</tr>
 									</s:iterator>
 								</table>
@@ -101,5 +109,11 @@
 			</div>
 		</div>
 	</div>
+			<s:if test="#session.existUser==null">
+					<form action="user_outlog" method="get" name="myform"></form>
+					<script type="text/javascript">
+						document.myform.submit();
+					</script>
+	</s:if>
 </body>
 </html>

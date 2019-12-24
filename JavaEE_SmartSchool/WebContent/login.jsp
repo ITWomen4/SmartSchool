@@ -16,10 +16,10 @@
 <body>
 <div class="sideright">
 <div class="index">
-<s:form action="user_login" method="post" namespace="/">
+<s:form action="user_login" method="post" namespace="/" >
 	<p class="headline">请登录</p>
 	<p class="astyle">用户名：</p>
-		<input type="text" name="username" value="" placeholder="请输入用户名" required autofocus />
+		<input type="text" name="user_id" value="" placeholder="请输入用户名" required autofocus />
 	<p class="astyle">密 码：</p>
 		<input type="password" name="password" value="" placeholder="请输入密码" required maxLength="16" /> 
 	<!-- 显示错误信息 -->

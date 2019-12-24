@@ -24,9 +24,10 @@
 					<div class="container">
 						<div class="column">
 							<div >
-								<a href="${pageContext.request.contextPath }/index.jsp"><img src="${pageContext.request.contextPath }/images/logoSmart.png" alt="MyPassion" class="logoImg"/></a>
+								<a href="${pageContext.request.contextPath }/index.jsp"><img src="${pageContext.request.contextPath }/images/logo.png" alt="MyPassion" class="logoImg2"/></a>
 							</div>
-
+						</div>						
+						<div class="column">
 							<div class="search">
 								<form action="files_search" method="post">
 									<input type="text" name="fileName" placeholder="请输入通知标题"
@@ -65,5 +66,11 @@
 			</div>
 		</div>
 	</div>
+	<s:if test="#session.existUser==null or #session.existUser.role==0">
+					<form action="user_outlog" method="get" name="myform"></form>
+					<script type="text/javascript">
+						document.myform.submit();
+					</script>
+	</s:if>
 </body>
 </html>

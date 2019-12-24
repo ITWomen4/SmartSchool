@@ -27,7 +27,7 @@ public class LgNoticeServiceImpl implements LgNoticeService{
         // 封装当前页数
         pageBean.setCurrPage(currPage);
         // 封装每页记录数
-        int pageSize = 16;
+        int pageSize = 13;
         pageBean.setPageSize(pageSize);
         // 封装总记录数
         int totalCount = lgNoticeDao.findCount();

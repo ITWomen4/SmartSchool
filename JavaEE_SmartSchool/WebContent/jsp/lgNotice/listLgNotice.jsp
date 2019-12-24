@@ -29,9 +29,10 @@
 					<div class="container">
 						<div class="column">
 							<div >
-								<a href="${pageContext.request.contextPath }/index.jsp"><img src="${pageContext.request.contextPath }/images/logoSmart.png" alt="MyPassion" class="logoImg"/></a>
+								<a href="${pageContext.request.contextPath }/index.jsp"><img src="${pageContext.request.contextPath }/images/logo.png" alt="MyPassion" class="logoImg2"/></a>
 							</div>
-
+						</div>
+						<div class="column">
 							<div class="search">
 								<form action="lgNotice_search" method="post">
 									<input type="text" name="noticeName" placeholder="请输入通知标题"
@@ -42,7 +43,9 @@
 							<nav id="nav">
 								<ul class="sf-menu">
 									<li class="current"><a href="lgNotice_findAll.action">后勤通知</a></li>
-									<li><a href="lgNotice_goAddLgNotice.action">发布后勤通知</a></li>
+									<s:if test="#session.existUser.role==1">
+										<li><a href="lgNotice_goAddLgNotice.action">发布后勤通知</a></li>
+									</s:if>
 									<li><a href="${pageContext.request.contextPath }/index.jsp">返回主页</a></li>
 								</ul>
 							</nav>
@@ -53,59 +56,77 @@
 				<!-- Content -->
 				<section id="content">
 					<div class="container">
-						<div class="lgTable">
-							<table border="0" width="100%"  aligin="center">
-								<s:iterator value="list" var="e">
-									<tr>
-										<td align="center" valign="middle" width="10px" nowrap><span> <img
-												src="${pageContext.request.contextPath }/images/321_19.gif"
-												align="absmiddle"></span>&nbsp;</td>
-										<td valign="middle" align="left"><s:property
-												value="#e.noticeName" /></td>
-										<td valign="middle" align="center" width="1%" nowrap><s:date
-												format="yyyy-MM-dd" name="#e.uploadTime" /></td>
-										<td valign="middle" align="center" width="1%" nowrap><a
-											href="lgNotice_detail.action?noticeId=<s:property value="#e.noticeId"/>">
-												&nbsp;详情
-										</a></td>
-										<td valign="middle" align="center" width="1%" nowrap><a
-											href="lgNotice_goEdit.action?noticeId=<s:property value="#e.noticeId"/>">
-												&nbsp;修改
-										</a></td>
-										<td valign="middle" align="center" width="1%" nowrap><a
-											href="lgNotice_delete.action?noticeId=<s:property value="#e.noticeId"/>">
-												&nbsp;删除
-										</a></td>
-									</tr>
-									<!-- 横线： -->
-									<tr>
-										<td colspan="6" height="1"
-											style="background-image: url(${pageContext.request.contextPath }/images/321_27.gif)"></td>
-									</tr>
-							</s:iterator>
-							</table>
-							<div class="pageBottom">
-									<span> 第<s:property value="currPage" />/<s:property value="totalPage" />页</span> &nbsp;&nbsp; 
-									<span> 总记录数：<s:property value="totalCount" />&nbsp;&nbsp;每页显示:<s:property value="pageSize" /></span>&nbsp;&nbsp; 
-									<span>
-											<s:if test="currPage != 1">
-												<a href="lgNotice_findAll.action?currPage=1">[首页]</a>&nbsp;&nbsp;
-                   								<a href="lgNotice_findAll.action?currPage=<s:property value="currPage-1"/>">[上一页]</a>&nbsp;&nbsp;
-              								</s:if>
-                							<s:if test="currPage != totalPage">
-												<a href="lgNotice_findAll.action?currPage=<s:property value="currPage+1"/>">[下一页]</a>&nbsp;&nbsp;
-                    							<a href="lgNotice_findAll.action?currPage=<s:property value="totalPage"/>">[尾页]&nbsp;&nbsp;<s:property value="totalPage" /></a>
-               								</s:if>
-									</span>
-									<br><br>
+						<!-- 如果查询结果不为空则显示列表 -->
+						<s:if test="list.isEmpty()==false">
+							<div class="lgTable">
+								<table border="0" width="100%"  aligin="center">
+									<s:iterator value="list" var="e">
+										<tr>
+											<td align="center" valign="middle" width="10px" nowrap><span> <img
+													src="${pageContext.request.contextPath }/images/321_19.gif"
+													align="absmiddle"></span>&nbsp;</td>
+											<td valign="middle" align="left"><s:property
+													value="#e.noticeName" /></td>
+											<td valign="middle" align="center" width="1%" nowrap><s:date
+													format="yyyy-MM-dd" name="#e.uploadTime" /></td>
+											<td valign="middle" align="center" width="1%" nowrap><a
+												href="lgNotice_detail.action?noticeId=<s:property value="#e.noticeId"/>">
+													&nbsp;详情
+											</a></td>
+											<s:if test="#session.existUser.role==1">
+												<td valign="middle" align="center" width="1%" nowrap><a
+													href="lgNotice_goEdit.action?noticeId=<s:property value="#e.noticeId"/>">
+														&nbsp;修改
+													</a>
+												</td>
+												<td valign="middle" align="center" width="1%" nowrap><a
+														href="lgNotice_delete.action?noticeId=<s:property value="#e.noticeId"/>">
+															&nbsp;删除
+													</a>
+												</td>
+											</s:if>
+										</tr>
+										<!-- 横线： -->
+										<tr>
+											<td colspan="6" height="1"
+												style="background-image: url(${pageContext.request.contextPath }/images/321_27.gif)"></td>
+										</tr>
+								</s:iterator>
+								</table>
+								<div class="pageBottom">
+										<span> 第<s:property value="currPage" />/<s:property value="totalPage" />页</span> &nbsp;&nbsp; 
+										<span> 总记录数：<s:property value="totalCount" />&nbsp;&nbsp;每页显示:<s:property value="pageSize" /></span>&nbsp;&nbsp; 
+										<span>
+												<s:if test="currPage != 1">
+													<a href="lgNotice_findAll.action?currPage=1">[首页]</a>&nbsp;&nbsp;
+	                   								<a href="lgNotice_findAll.action?currPage=<s:property value="currPage-1"/>">[上一页]</a>&nbsp;&nbsp;
+	              								</s:if>
+	                							<s:if test="currPage != totalPage">
+													<a href="lgNotice_findAll.action?currPage=<s:property value="currPage+1"/>">[下一页]</a>&nbsp;&nbsp;
+	                    							<a href="lgNotice_findAll.action?currPage=<s:property value="totalPage"/>">[尾页]&nbsp;&nbsp;<s:property value="totalPage" /></a>
+	               								</s:if>
+										</span>
+										<br><br>
+								</div>
 							</div>
-						</div>
-
+						</s:if>
 					</div>
 					<!-- /Main Content -->
+					<!-- 如果查询结果为空则显示提示信息 -->
+					<s:if test="list.isEmpty()==true">
+						<div class="notFound">
+							<span>暂无数据</span>
+						</div>
+					</s:if>				
 				</section>
 			</div>
 		</div>
 	</div>
+	<s:if test="#session.existUser==null">
+					<form action="user_outlog" method="get" name="myform"></form>
+					<script type="text/javascript">
+						document.myform.submit();
+					</script>
+	</s:if>
 </body>
 </html>

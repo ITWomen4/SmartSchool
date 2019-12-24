@@ -63,10 +63,10 @@ public class LgNoticeAction extends ActionSupport implements ModelDriven<LgNotic
 	 */
 	public String save(){
 		//获取当前登录的用户保存在session中的用户名:
-		//Users user = (Users)ActionContext.getContext().getSession().get("existEmployee");
-		//lgNotice.setUploaderName(user.getUsername());
+		Users user = (Users)ActionContext.getContext().getSession().get("existUser");
+		lgNotice.setUploaderName(user.getUsername());
 		
-		lgNotice.setUploaderName("tammy");
+//		lgNotice.setUploaderName("tammy");
 		lgNotice.setUploadTime(new Date());
 		System.out.println("发布的后勤通知：----"+lgNotice.toString());
 		lgNoticeService.save(lgNotice);

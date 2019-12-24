@@ -81,7 +81,9 @@ body {
 	width:50px;
 	height:50px;
 }
-
+.logoImg2{
+	width:100%;
+}
 .search {
 	background: #fafafa;
 	width: 230px;

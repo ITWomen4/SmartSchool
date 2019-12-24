@@ -55,23 +55,14 @@ public class UsersAction extends ActionSupport implements ModelDriven<Users>{
 	public String input(){
 		return "INPUT";
 	}
-	
-	public String save(){
-		
-		Users existUser = usersService.findByUsername(users);
-		if(existUser==null){
-		this.addActionError(users.getUsername()+"注册成功 ！");
-//		if(users.getPassword().isEmpty()||users.getUsername().isEmpty()) {
-//			return "goregister";
-//		}
 
-		usersService.save(users);
-		return "INPUT";
-		}else {
-			this.addActionError("用户名已存在！");
-			return "register";
-		}
-	}
 	
+	public String outlog(){
+		System.out.println("action.outlog方法执行");
+		// 登录成功
+		System.out.println("Action查找成功");
+		ActionContext.getContext().getSession().clear();
+		return "outlog";
+	}
 	
 }

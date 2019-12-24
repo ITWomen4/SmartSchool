@@ -31,9 +31,10 @@
 					<div class="container">
 						<div class="column">
 							<div >
-								<a href="${pageContext.request.contextPath }/index.jsp"><img src="${pageContext.request.contextPath }/images/logoSmart.png" alt="MyPassion" class="logoImg"/></a>
+								<a href="${pageContext.request.contextPath }/index.jsp"><img src="${pageContext.request.contextPath }/images/logo.png" alt="MyPassion" class="logoImg2"/></a>
 							</div>
-
+						</div>						
+						<div class="column">
 							<div class="search">
 								<form action="files_search" method="post">
 									<input type="text" name="fileName" placeholder="请输入通知标题"
@@ -44,7 +45,9 @@
 							<nav id="nav">
 								<ul class="sf-menu">
 									<li class="current"><a href="files_findAll.action">教务通知文件</a></li>
-									<li><a href="files_goUpload.action">上传文件</a></li>
+									<s:if test="#session.existUser.role==1">
+										<li><a href="files_goUpload.action">上传文件</a></li>
+									</s:if>
 									<li><a href="${pageContext.request.contextPath }/index.jsp">返回主页</a></li>
 								</ul>
 							</nav>
@@ -55,61 +58,78 @@
 				<!-- Content -->
 				<section id="content">
 					<div class="container">
-						<div class="breadcrumbs column"></div>
-						<div class="column">
-							<table>
-								<tr class="thStyle">
-									<th>标题</th>
-									<th>文件格式</th>
-									<th>发布者</th>
-									<th>发布时间</th>
-									<th>下载</th>
-									<th>删除</th>
-								</tr>
-								<s:iterator value="list" var="e">
-									<tr class="odd">
-										<td align="center"><s:property value="#e.fileName" /></td>
-										<td align="center"><s:property value="#e.fileFormat" /></td>
-										<td align="center"><s:property value="#e.uploaderName" /></td>
-										<td align="center"><s:date format="yyyy-MM-dd"
-												name="#e.uploadTime" /></td>
-										<td style="text-align: center;">
-											 <a href="<s:property value="#e.fileAddress"/>" > 
-												<img src="${pageContext.request.contextPath }/images/download.png" />
-											</a>
-										</td>
-										
-										<td style="text-align: center;">
-											<a href="files_delete.action?fileId=<s:property value="#e.fileId"/>">
-												<img src="${pageContext.request.contextPath }/images/delete.png" />
-											</a>
-										</td>
+						<!-- 如果查询结果不为空则显示列表 -->
+						<s:if test="list.isEmpty()==false">
+							<div class="breadcrumbs column"></div>
+							<div class="column">
+								<table>
+									<tr class="thStyle">
+										<th>标题</th>
+										<th>文件格式</th>
+										<th>发布者</th>
+										<th>发布时间</th>
+										<th>下载</th>
+										<s:if test="#session.existUser.role==1">
+											<th>删除</th>
+	               						</s:if>
+									
 									</tr>
-								</s:iterator>
-							</table>
-							<div class="pageBottom">
-									<span> 第<s:property value="currPage" />/<s:property value="totalPage" />页</span> &nbsp;&nbsp; 
-									<span> 总记录数：<s:property value="totalCount" />&nbsp;&nbsp;每页显示:<s:property value="pageSize" /></span>&nbsp;&nbsp; 
-									<span>
-											<s:if test="currPage != 1">
-												<a href="files_findAll.action?currPage=1">[首页]</a>&nbsp;&nbsp;
-                   								<a href="files_findAll.action?currPage=<s:property value="currPage-1"/>">[上一页]</a>&nbsp;&nbsp;
-              								</s:if>
-                							<s:if test="currPage != totalPage">
-												<a href="files_findAll.action?currPage=<s:property value="currPage+1"/>">[下一页]</a>&nbsp;&nbsp;
-                    							<a href="files_findAll.action?currPage=<s:property value="totalPage"/>">[尾页]<s:property value="totalPage" /></a>&nbsp;&nbsp;
-               								</s:if>
-									</span>
-									<br><br>
+									<s:iterator value="list" var="e">
+										<tr class="odd">
+											<td align="center"><s:property value="#e.fileName" /></td>
+											<td align="center"><s:property value="#e.fileFormat" /></td>
+											<td align="center"><s:property value="#e.uploaderName" /></td>
+											<td align="center"><s:date format="yyyy-MM-dd"
+													name="#e.uploadTime" /></td>
+											<td style="text-align: center;">
+												 <a href="<s:property value="#e.fileAddress"/>" > 
+													<img src="${pageContext.request.contextPath }/images/download.png" />
+												</a>
+											</td>
+											<s:if test="#session.existUser.role==1">
+												<td style="text-align: center;">
+													<a href="files_delete.action?fileId=<s:property value="#e.fileId"/>">
+														<img src="${pageContext.request.contextPath }/images/delete.png" />
+													</a>
+												</td>
+											</s:if>
+										</tr>
+									</s:iterator>
+								</table>
+								<div class="pageBottom">
+										<span> 第<s:property value="currPage" />/<s:property value="totalPage" />页</span> &nbsp;&nbsp; 
+										<span> 总记录数：<s:property value="totalCount" />&nbsp;&nbsp;每页显示:<s:property value="pageSize" /></span>&nbsp;&nbsp; 
+										<span>
+												<s:if test="currPage != 1">
+													<a href="files_findAll.action?currPage=1">[首页]</a>&nbsp;&nbsp;
+	                   								<a href="files_findAll.action?currPage=<s:property value="currPage-1"/>">[上一页]</a>&nbsp;&nbsp;
+	              								</s:if>
+	                							<s:if test="currPage != totalPage">
+													<a href="files_findAll.action?currPage=<s:property value="currPage+1"/>">[下一页]</a>&nbsp;&nbsp;
+	                    							<a href="files_findAll.action?currPage=<s:property value="totalPage"/>">[尾页]<s:property value="totalPage" /></a>&nbsp;&nbsp;
+	               								</s:if>
+										</span>
+										<br><br>
+								</div>
 							</div>
-						</div>
-
+						</s:if>
 					</div>
 					<!-- /Main Content -->
+					<!-- 如果查询结果为空则显示提示信息 -->
+					<s:if test="list.isEmpty()==true">
+						<div class="notFound">
+							<span>暂无数据</span>
+						</div>
+					</s:if>
 				</section>
 			</div>
 		</div>
 	</div>
-
+<s:if test="#session.existUser==null">
+					<form action="user_outlog" method="get" name="myform"></form>
+					<script type="text/javascript">
+						document.myform.submit();
+					</script>
+	</s:if>
 </body>
 </html>

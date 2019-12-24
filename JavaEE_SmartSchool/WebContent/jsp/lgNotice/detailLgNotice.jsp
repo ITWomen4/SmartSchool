@@ -27,21 +27,23 @@
 					<div class="container">
 						<div class="column">
 							<div >
-								<a href="${pageContext.request.contextPath }/index.jsp"><img src="${pageContext.request.contextPath }/images/logoSmart.png" alt="MyPassion" class="logoImg"/></a>
+								<a href="${pageContext.request.contextPath }/index.jsp"><img src="${pageContext.request.contextPath }/images/logo.png" alt="MyPassion" class="logoImg2"/></a>
 							</div>
-
+						</div>
+						<div class="column">
 							<div class="search">
-								<form action="files_search" method="post">
-									<!--  <input type="text" name="fileName" placeholder="查找."
+								<form action="lgNotice_search" method="post">
+									<input type="text" name="noticeName" placeholder="请输入通知标题"
 										required maxLength="20" class="ft" /> 
 									<input type="submit" value="" class="fs">
-									-->
 								</form>
 							</div>
 							<nav id="nav">
 								<ul class="sf-menu">
 									<li class="current"><a href="lgNotice_findAll.action">后勤通知</a></li>
-									<li><a href="lgNotice_goAddLgNotice.action">发布后勤通知</a></li>
+									<s:if test="#session.existUser.role==1">
+										<li><a href="lgNotice_goAddLgNotice.action">发布后勤通知</a></li>
+									</s:if>
 									<li><a href="${pageContext.request.contextPath }/index.jsp">返回主页</a></li>
 									<li><a href="lgNotice_findAll.action">返回列表</a></li>
 								</ul>
@@ -68,5 +70,11 @@
 		</div>
 	</div>
 </div>
+		<s:if test="#session.existUser==null">
+					<form action="user_outlog" method="get" name="myform"></form>
+					<script type="text/javascript">
+						document.myform.submit();
+					</script>
+	</s:if>
 </body>
 </html>

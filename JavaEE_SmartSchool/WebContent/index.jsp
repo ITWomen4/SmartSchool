@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -60,10 +61,10 @@
     		
     	});
     });
-        
+        /*
         function islog(){
     	    $.ajax({     
-    	    	url: "${pageContext.request.contextPath }/islogin",
+    	    	url: "${pageContext.request.contextPath }/user_login",
     	    	type:"POST",
     	    	success: function (data){  
     	    		if(data=="yes"){
@@ -72,7 +73,7 @@
     				}
     	    	} 
     	    });
-        }
+        }*/
     </script>
 	<style type="text/css">
 		.dropdown-menu{
@@ -102,12 +103,11 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body" align="center">
-        	<form class="form-horizontal" >
-        	
+        	<s:form action="user_login" class="form-horizontal"  method="post" namespace="/"  theme="simple">
 			  <div class="form-group" align="center">
 			    <label class="col-sm-2 control-label"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></label>
 			    <div class="col-sm-7">
-			      <input type="text"  name="userid" class="form-control" id="userid" placeholder="请输入网存账号/学号">
+			      <input type="text"  name="user_id" class="form-control" id="userid" placeholder="请输入网存账号/学号">
 			      <span class="help-block"></span>
 			    </div>
 			  </div>
@@ -118,17 +118,17 @@
 			      <span class="help-block"></span>
 			    </div>
 			  </div>
-			  
-			</form>
+			  <!-- 错误提示 -->
+		   	   <div id="wrongtip">
+		    	  	<span id="wrongspan" style="color: red"><s:actionerror/></span>
+		    	  </div>
+		    	  <div align="center">
+		      	  <button id="islogin" type="submit" class="btn btn-primary btn-lg" style="width: 150px">登录</button>
+		     	 </div>
+			</s:form>
       </div>
+
       
-      <!-- 错误提示 -->
-      <div id="wrongtip">
-      	<span id="wrongspan" style="color: red"></span>
-      </div>
-      <div align="center">
-        <button id="islogin" type="button" class="btn btn-primary btn-lg" style="width: 150px">登录</button>
-      </div>
     </div>
   </div>
 </div>
@@ -276,7 +276,7 @@
 					  .append(btn);
 		
 	}
-	
+	/*
 		 function checklogin(){
 				$.ajax({
 					url:"${pageContext.request.contextPath }/checklogin",
@@ -313,7 +313,7 @@
 			
 		});
 		 
-		 
+		*/
 	</script>
 </body>
 

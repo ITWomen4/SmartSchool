@@ -23,13 +23,16 @@
 				<header id="header">
 					<div class="container">
 						<div class="column">
-							<div >
-								<a href="${pageContext.request.contextPath }/index.jsp"><img src="${pageContext.request.contextPath }/images/logoSmart.png" alt="MyPassion" class="logoImg"/></a>
+							<div>
+								<a href="${pageContext.request.contextPath }/index.jsp"><img
+									src="${pageContext.request.contextPath }/images/logo.png"
+									alt="MyPassion" class="logoImg2" /></a>
 							</div>
-
+						</div>
+						<div class="column">
 							<div class="search">
 								<form action="sourceFiles_searchSource" method="post">
-									<input type="text" name="fileName" placeholder="查找."
+									<input type="text" name="fileName" placeholder="请输入资料标题"
 										required maxLength="20" class="ft" /> 
 									<input type="submit" value="" class="fs">
 								</form>
@@ -66,5 +69,11 @@
 			</div>
 		</div>
 	</div>
+			<s:if test="#session.existUser==null or #session.existUser.role==0">
+					<form action="user_outlog" method="get" name="myform"></form>
+					<script type="text/javascript">
+						document.myform.submit();
+					</script>
+			</s:if>
 </body>
 </html>

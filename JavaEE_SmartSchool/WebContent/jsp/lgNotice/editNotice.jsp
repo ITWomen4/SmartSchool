@@ -28,8 +28,10 @@
 					<div class="container">
 						<div class="column">
 							<div >
-								<a href="${pageContext.request.contextPath }/index.jsp"><img src="${pageContext.request.contextPath }/images/logoSmart.png" alt="MyPassion" class="logoImg"/></a>
+								<a href="${pageContext.request.contextPath }/index.jsp"><img src="${pageContext.request.contextPath }/images/logo.png" alt="MyPassion" class="logoImg2"/></a>
 							</div>
+						</div>
+						<div class="column">
 							<div class="search">
 								<form action="lgNotice_search" method="post">
 									<input type="text" name="noticeName" placeholder="请输入通知标题"
@@ -40,7 +42,7 @@
 							<nav id="nav">
 								<ul class="sf-menu">
 									<li><a href="lgNotice_findAll.action">后勤通知</a></li>
-									<li class="current"><a href="lgNotice_goAddLgNotice.action">发布后勤通知</a></li>
+									<li class="current"><a href="#">修改后勤通知</a></li>
 									<li><a href="${pageContext.request.contextPath }/index.jsp">返回主页</a></li>
 								</ul>
 							</nav>
@@ -51,7 +53,7 @@
 				<!-- Content -->
 				<section id="content">
 					<div class="upload">
-						<h3>编辑后勤通知</h3>
+						<h3>修改后勤通知</h3>
 						<!-- action对应一个action标签，id对应提交时的对应关系 -->
 						<s:form id="saveForm" action="lgNotice_edit" method="post" namespace="/" theme="simple">
 							<s:hidden name="noticeId" value="%{model.noticeId}"></s:hidden>
@@ -73,5 +75,11 @@
 			</div>
 		</div>
 </div>
+		<s:if test="#session.existUser==null or #session.existUser.role==0">
+					<form action="user_outlog" method="get" name="myform"></form>
+					<script type="text/javascript">
+						document.myform.submit();
+					</script>
+	</s:if>
 </body>
 </html> 
